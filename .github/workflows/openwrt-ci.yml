@@ -65,14 +65,6 @@ jobs:
             CONFIG_TARGET_x86_64=y
             CONFIG_TARGET_x86_64_Generic=y
             EOF
-          # 固件压缩:
-          # cat >> .config <<EOF
-          # CONFIG_TARGET_IMAGES_GZIP=y
-          # EOF
-          # 编译UEFI固件:
-          # cat >> .config <<EOF
-          # CONFIG_EFI_IMAGES=y
-          # EOF
           # IPv6支持:
             cat >> .config <<EOF
             CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
