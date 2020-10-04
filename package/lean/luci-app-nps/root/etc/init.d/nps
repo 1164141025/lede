@@ -4,7 +4,7 @@
 START=50
 USE_PROCD=1
 
-LOGFILE="/var/etc/nps.log"
+LOGFILE="/tmp/nps.log"
 tmpconf="/tmp/etc/nps.conf"
 
 nps_header() {
@@ -24,6 +24,7 @@ nps_header() {
 	echo "server_addr=${server_addr}:${server_port}" >>$tmpconf
 	echo "conn_type=${protocol}" >>$tmpconf
 	echo "vkey=${vkey}" >>$tmpconf
+	echo "auto_reconnection=true" >>$tmpconf
 
 	nps_write_bool compress $1
 	nps_write_bool crypt $1
@@ -61,9 +62,7 @@ start_service() {
 	fi
 }
 
-reload_service()
-{
-        stop
-        start
+service_triggers() {
+        procd_add_reload_trigger "nps"
 }
 

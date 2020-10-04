@@ -17,10 +17,6 @@
 		led-upgrade = &led_power_orange;
 	};
 
-	chosen {
-		bootargs = "console=ttyS0,115200";
-	};
-
 	extosc: ref {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -34,7 +30,7 @@
 		usb {
 			label = "d-link:blue:usb";
 			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
-			trigger-sources = <&usb_ochi_port>, <&usb_echi_port>;
+			trigger-sources = <&usb_ohci_port>, <&usb_ehci_port>;
 			linux,default-trigger = "usbport";
 		};
 
@@ -123,7 +119,7 @@
 	#size-cells = <0>;
 	status = "okay";
 
-	usb_ochi_port: port@1 {
+	usb_ohci_port: port@1 {
 		reg = <1>;
 		#trigger-source-cells = <0>;
 	};
@@ -134,7 +130,7 @@
 	#size-cells = <0>;
 	status = "okay";
 
-	usb_echi_port: port@1 {
+	usb_ehci_port: port@1 {
 		reg = <1>;
 		#trigger-source-cells = <0>;
 	};
@@ -205,7 +201,7 @@
 				reg = <0x050000 0x610000>;
 			};
 
-			caldata: partition@60000 {
+			partition@660000 {
 				label = "caldata";
 				reg = <0x660000 0x010000>;
 				read-only;
